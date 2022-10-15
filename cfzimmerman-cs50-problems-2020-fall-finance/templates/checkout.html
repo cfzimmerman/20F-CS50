@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quoted
+{% endblock %}
+
+{% block main %}
+    <form action="/checkout" method="post">
+        <div class="container">
+            <h2>{{ quote.name }}</h2>
+            <table>
+               <thead>
+                    <tr>
+                        <th>Symbol</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td> {{ quote.symbol }} </td>
+                        <td> {{ quote.name }} </td>
+                        <td> {{ quote.price | usd }} </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <h3>Purchase {{quote.name}}</h3>
+        <h4>Market Price: {{ quote.price | usd}}</h4>
+
+        <!-- Turn off spinners: https://www.tutorialspoint.com/how-to-remove-arrows-spinners-from-input-type-number-with-css -->
+        <style>
+            input::-webkit-outer-spin-button,
+            input::-webkit-inner-spin-button {
+               -webkit-appearance: none;
+               margin: 0;
+            }
+            input[type="number"] {
+               -moz-appearance: textfield;
+            }
+        </style>
+
+        <input type="hidden" id="quote" name="quote" value="{{ quote.price}}">
+        <input type="hidden" id="symbol" name="symbol" value="{{ quote.symbol}}">
+
+        <!-- Lots of help from this site: https://www.w3schools.com/tags/ev_onkeyup.asp -->
+
+        <div class="form-group">
+            <input type="number" name="quantity" id="quantity" onkeyup="total_price()" min="1" placeholder="Quantity">
+        </div>
+
+        <p>Total Price ($/USD): <br> <span id="value"></span></p>
+
+        <script>
+            function total_price() {
+                let quantity = document.getElementById("quantity").value;
+                let cost = document.getElementById("quote").value;
+                let owed = (cost * quantity);
+                if (quantity < 1)
+                {
+                    document.getElementById("value").innerHTML = "Please provide a quantity greater than 0";
+                }
+                else
+                {
+                    document.getElementById("value").innerHTML = owed.toFixed(2);
+                }
+            }
+        </script>
+        <button class="btn btn-primary" type="submit">Purchase</button>
+    </form>
+{% endblock %}

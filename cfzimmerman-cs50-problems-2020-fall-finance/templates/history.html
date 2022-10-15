@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+
+    <h2>History</h2>
+
+        <div class="section">
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Symbol</th>
+                        <th>Name</th>
+                        <th>Quantity</th>
+                        <th>Status</th>
+                        <th>Price</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for point in history %}
+                    <tr>
+                        <td> {{ point.get("symbol") }} </td>
+                        <td> {{ point.get("name") }} </td>
+                        <td> {{ point.get("quantity") }} </td>
+                        <td> {{ point.get("status") }} </td>
+                        <td> {{ point.get("price") | usd }} </td>
+                        <td> {{ point.get("time") }} </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+{% endblock %}

@@ -1,0 +1,55 @@
+sort1 uses: Bubble Sort
+
+How do you know?: The primary indicator for bubble sort here is that the sorted data processes much faster than the random data. Bubble sort has an Omega of n compared to an O of n^2, so its reasonable to expect that the algorithm that saves time on the sorted versus the unsorted data set is bubble sort.
+
+sort2 uses: Merge Sort
+
+How do you know?: It is by far the fastest sorting method for the random5000 data set. There's pretty much no time saving between random and sorted data sets, which suggests the presence of an algorithm with the same Omega and O values.
+
+sort3 uses: Selection Sort
+
+How do you know?: Process of elimination suggests this. Also, sort3 is quite slow compared to sort2 on the larger data sets, so it probably isn't merge sort. It also doesn't save any time on the already-sorted data, so it probably isn't bubble sort. That suggests that sort3 is selection sort.
+
+
+sort1
+    random5000: 0.077s
+    random10000: 0.522s
+    random50000: 16.291s
+    
+    reversed5000: 0.170s
+    reversed10000: 0.473s
+    reversed50000: 13.563s
+    
+    sorted5000: 0.1s
+    sorted10000: 0.338s
+    sorted50000: 2.837s
+
+sort2
+    random5000: 0.005s
+    random10000: 0.034s
+    random50000: 1.989s
+    
+    reversed5000: 0.014s
+    reversed10000: 0.041s
+    reversed50000: 2.238s
+    
+    sorted5000: 0.031s
+    sorted10000: 0.059s
+    sorted50000: 2.795s
+    
+time ./sorttype dataset.txt
+    
+sort3
+    random5000: 0.097s
+    random10000: 0.234s
+    random50000: 8.227s
+    
+    reversed5000: 0.041s
+    reversed10000: 0.307s
+    reversed50000: 7.423s
+    
+    sorted5000: 0.110s
+    sorted10000: 0.287s
+    sorted50000: 7.456s
+    
+    

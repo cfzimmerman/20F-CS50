@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quoted
+{% endblock %}
+
+{% block main %}
+    <form action="/quoted" method="post">
+        <div class="container">
+            <h2>{{ quote.name }}</h2>
+            <table>
+               <thead>
+                    <tr>
+                        <th>Symbol</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td> {{ quote.symbol }} </td>
+                        <td> {{ quote.name }} </td>
+                        <td> {{ quote.price | usd}} </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <button class="btn btn-primary" type="submit">Return</button>
+    </form>
+{% endblock %}

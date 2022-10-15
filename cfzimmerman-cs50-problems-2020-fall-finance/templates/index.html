@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+
+    <h1>C$50 Finance</h1>
+    <h3>Welcome {{ user[0].get('username') }}</h3>
+    <h5>Account Value: {{ value | usd }}</h5>
+    <h5>Cash Position: {{ user[0].get('cash') | usd }}</h5>
+
+        <div class="section">
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Symbol</th>
+                        <th>Name</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for point in stocks %}
+                    <tr>
+                        <td> {{ point }} </td>
+                        <td> {{ stocks.get(point)[0] }} </td>
+                        <td> {{ stocks.get(point)[1] }} </td>
+                        <td> {{ prices.get(point) | usd }} </td>
+                        <td> {{ (prices.get(point) * stocks.get(point)[1]) | usd }} </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+{% endblock %}
